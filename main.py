@@ -3,7 +3,7 @@ from discord.ext import commands
 import discord
 
 
-token = "ㅇㅁㄴㅇ"
+token = "token"
 bot = commands.Bot(command_prefix="!")
 @bot.event
 async def on_ready():
