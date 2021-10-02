@@ -1,14 +1,12 @@
 #beta
-
-
 from discord.ext import commands
 import discord
 
 
 
-token = "token"
-intents = discord.Intents.all() #괄호 안에는 활성화할 인텐트를 작성해야함.
-#혹은
+token = ""
+intents = discord.Intents.all() 
+
 
 bot = commands.Bot(command_prefix="?", intents=intents)
 @bot.event
@@ -42,18 +40,11 @@ async def 청소(ctx):
             number = int(ctx.message.content[3:])
             await ctx.channel.purge(limit=number)
         except:
-            embed = discord.Embed(title="erro!", description="명령어 사용 예시:\n/청소 10", color=0xff0000)
+            embed = discord.Embed(title="erro!", description="명령어 사용 예시:\n?청소 10", color=0xff0000)
             await ctx.send(embed=embed)
     else: #아니라면
-        await ctx.send("권한이 없습니다.")
-#내 디스코드 정보를 보는 명령어
-@bot.command()
-async def 정보(ctx):
+        await ctx.send(f"<@!{ctx.author.id}>님은 권한이 없습니다.")
 
-    embed = discord.Embed(title="Your Profile!", description=f"name : {ctx.author.name} id : {ctx.author.id} status : {ctx.author.status} activity : {ctx.author.activity}", color=0x00ff00)
-    embed.set_thumbnail(url=ctx.author.avatar_url)
-    embed.set_footer(text=ctx.author, icon_url=ctx.author.avatar_url)
-    await ctx.send(embed=embed)
     
 #다른사람의 정보를 보는 명령어
 @bot.command()
@@ -74,6 +65,15 @@ async def 유저정보(ctx, user: discord.Member = None):
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
     except:
-            embed = discord.Embed(title="erro!", description="명령어 사용 예시:\n/유저정보 @정우", color=0xff0000)
+            embed = discord.Embed(title="erro!", description="명령어 사용 예시:\n?유저정보 @정우", color=0xff0000)
             await ctx.send(embed=embed)
+@bot.command()
+async def 도움말():
+    embed = discord.Embed(title="도움말", color=0x00ffff)
+    embed.add_field(name="접두사", value="?")
+    embed.add_field(name="공지", value="공지를 띄어줍니다.")
+    embed.add_field(name="청소", value="청소 (수) 채팅청소를 해줍니다")
+    embed.add_field(name="유저정보", value="유저정보를 띄어줍니다.")
+    embed.set_footer(text="이 봇은 discord 모듈 공부용입니다.")
+
 bot.run(token)
