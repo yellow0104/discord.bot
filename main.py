@@ -37,7 +37,7 @@ async def 공지(ctx):
 #채팅 청소 명령어
 @bot.command()
 async def 청소(ctx):
-    if ctx.author.guild_permissions.manage_message: #관리자 권한이 있는가?
+    if ctx.author.guild_permissions.manage_messages: #관리자 권한이 있는가?
         try:
             number = int(ctx.message.content[3:])
             await ctx.channel.purge(limit=number)
