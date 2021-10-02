@@ -68,7 +68,7 @@ async def 유저정보(ctx, user: discord.Member = None):
             embed = discord.Embed(title="erro!", description="명령어 사용 예시:\n?유저정보 @정우", color=0xff0000)
             await ctx.send(embed=embed)
 @bot.command()
-async def 도움말():
+async def 도움말(ctx):
     embed = discord.Embed(title="도움말", color=0x00ffff)
     embed.add_field(name="접두사", value="?")
     embed.add_field(name="공지", value="공지를 띄어줍니다.")
