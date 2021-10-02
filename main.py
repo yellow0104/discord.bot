@@ -75,5 +75,6 @@ async def 도움말(ctx):
     embed.add_field(name="청소", value="청소 (수) 채팅청소를 해줍니다")
     embed.add_field(name="유저정보", value="유저정보를 띄어줍니다.")
     embed.set_footer(text="이 봇은 discord 모듈 공부용입니다.")
-
+    await ctx.send(embed=embed)
+    
 bot.run(token)
